@@ -1,0 +1,47 @@
+[
+  {
+    "_id": "1",
+    "product_name": "Laptop",
+    "category": "Electronics",
+    "brand": "HP",
+    "price": 45000,
+    "stock": 10,
+    "warranty": "1 year",
+    "specifications": {
+      "ram": "8GB",
+      "storage": "512GB SSD",
+      "voltage": "220V"
+    },
+    "features": ["Bluetooth", "WiFi", "Webcam"]
+  },
+  {
+    "_id": "2",
+    "product_name": "T-Shirt",
+    "category": "Clothing",
+    "brand": "Levis",
+    "price": 1200,
+    "stock": 25,
+    "material": "Cotton",
+    "sizes": ["S", "M", "L", "XL"],
+    "colors": ["Black", "Blue", "White"],
+    "care": {
+      "wash": "Machine Wash",
+      "iron": "Yes"
+    }
+  },
+  {
+    "_id": "3",
+    "product_name": "Milk",
+    "category": "Groceries",
+    "brand": "Amul",
+    "price": 60,
+    "stock": 50,
+    "expiry_date": "2024-12-20",
+    "nutritional_info": {
+      "calories": 42,
+      "protein": "3.4g",
+      "fat": "1g"
+    },
+    "storage": ["Keep in fridge", "Use quickly after opening"]
+  }
+]

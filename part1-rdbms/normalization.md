@@ -54,7 +54,9 @@ If this row is deleted because order `ORD1185` is removed, then all information 
 
 So by deleting one order row, the company may accidentally delete product data too. That is a delete anomaly.
 
-## 3NF Schema Design
+
+
+## Normalization Justification
 
 I normalized the flat file into four tables:
 - customers
@@ -70,8 +72,6 @@ Order information is stored in the orders table.
 This removes repeated data and reduces insert, update, and delete anomalies.
 
 The source CSV contains only 3 distinct sales representatives, so only 3 valid rows can be inserted into the sales_reps table without creating artificial data.
-
-## Normalization Justification
 Keeping all data in one table may look easy, but it creates many problems. So I do not agree that normalization is over-engineering.
 
 In the original flat table, the same customer, product, and sales representative information is repeated many times. For example, if Rohan Mehta makes more than one order, his name, email, and city will be written again in every order row. The same happens for product details and sales representative details. This makes the table bigger and harder to manage.

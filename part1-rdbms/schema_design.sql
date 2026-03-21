@@ -72,10 +72,14 @@ INSERT INTO products (product_id, product_name, category, unit_price) VALUES
 -- =========================
 -- Insert data into sales_reps
 -- =========================
+-- Source CSV contains only 3 distinct sales reps.
+-- Two additional sample rows are added only to satisfy the assignment requirement of at least 5 rows per table.
 INSERT INTO sales_reps (sales_rep_id, sales_rep_name, sales_rep_email, office_address) VALUES
 ('SR01', 'Deepak Joshi', 'deepak@corp.com', 'Mumbai HQ, Nariman Point, Mumbai - 400021'),
 ('SR02', 'Anita Desai', 'anita@corp.com', 'Delhi Office, Connaught Place, New Delhi - 110001'),
-('SR03', 'Ravi Kumar', 'ravi@corp.com', 'South Zone, MG Road, Bangalore - 560001');
+('SR03', 'Ravi Kumar', 'ravi@corp.com', 'South Zone, MG Road, Bangalore - 560001'),
+('SR04', 'Sample Rep 1', 'sample1@corp.com', 'East Zone, Salt Lake, Kolkata - 700091'),
+('SR05', 'Sample Rep 2', 'sample2@corp.com', 'West Zone, SG Highway, Ahmedabad - 380015');
 
 -- =========================
 -- Insert data into orders

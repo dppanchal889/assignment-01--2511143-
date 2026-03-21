@@ -1,6 +1,5 @@
 ## Architecture Recommendation
 
-## Architecture Recommendation
 
 I would recommend a Data Lakehouse for this food delivery startup.
 

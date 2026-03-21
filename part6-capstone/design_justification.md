@@ -1,23 +1,21 @@
 ## Storage Systems
 
-In this design, I used different storage systems because the hospital has different kinds of work.
+In this design, I used multiple storage systems because the hospital network has different goals and each goal needs a different type of data handling. For predicting patient readmission risk, I would use both a data lake and a data warehouse. The data lake stores raw historical treatment data, lab records, prescriptions, discharge summaries, and other source data in its original form. This is useful because machine learning models usually need large volumes of raw and detailed historical data. The data warehouse stores cleaned and structured versions of important data so analysts and data scientists can use it more easily for model training and reporting.
 
-For predicting patient readmission risk, I would use a data lake and a data warehouse. The data lake can keep raw historical treatment data, and the data warehouse can keep cleaned data for analysis. This is useful because machine learning needs a lot of past data.
+For doctors who want to query patient history in plain English, I would use a vector database. Clinical notes, discharge summaries, diagnosis descriptions, and other text-based patient records can be converted into embeddings and stored in the vector database. This allows semantic search, which means the system can find information by meaning rather than exact words.
 
-For doctors asking questions in plain English, I would use a vector database. Patient history, doctor notes, and discharge summaries can be converted into embeddings and stored there. This helps the system find similar meaning, not only exact words.
+For monthly hospital reports such as bed occupancy, department costs, and utilization trends, I would use a data warehouse. A warehouse is the best option for reporting because the data is structured, cleaned, and organized for fast analytical queries.
 
-For monthly reports such as bed occupancy and department costs, I would use a data warehouse. This is a good choice because reporting works better on structured and organized data.
-
-For real-time ICU vitals, I would use a streaming system and a time-series database. ICU devices send data continuously, so this type of storage is better for time-based data like heart rate, oxygen level, and blood pressure.
+For real-time ICU vitals, I would use a streaming pipeline together with a time-series database. ICU devices generate continuous measurements such as heart rate, oxygen saturation, and blood pressure. A time-series database is well suited for storing and querying this kind of time-based data efficiently.
 
 ## OLTP vs OLAP Boundary
 
-In my design, the OLTP part is the operational hospital system. This includes patient registration, treatment updates, billing, and doctor entries. It is used for daily work and fast transactions.
+In this design, the OLTP boundary ends at the operational hospital systems. These systems include patient registration, appointments, treatment updates, doctor entries, and billing transactions. They are used for day-to-day hospital work and need fast, reliable transaction processing.
 
-The OLAP part starts when data is moved from the operational systems into the data warehouse or data lake. After that, the data is used for reporting, dashboards, analytics, and machine learning. So, OLTP is for day-to-day hospital activities, and OLAP is for analysis.
+The OLAP boundary begins when data is extracted from these operational systems and moved into analytical storage such as the data warehouse, data lake, vector database, or time-series environment used for broader analysis. After that point, the data is no longer mainly used for transactions but for reporting, dashboards, machine learning, and semantic search. In simple terms, OLTP supports hospital operations, while OLAP supports insight generation and decision-making.
 
 ## Trade-offs
 
-One important trade-off in this design is that using many storage systems makes the architecture better, but also more complex. For example, data has to move between different systems like the operational database, warehouse, vector database, and time-series database.
+One major trade-off in this design is complexity. Using separate systems such as a warehouse, lake, vector database, and time-series database gives better performance for different use cases, but it also increases maintenance, integration effort, and governance complexity. Data must move correctly between systems, and teams must manage more pipelines and storage technologies.
 
-To reduce this problem, I would use clear data pipelines and simple rules about which system stores what type of data. I would also use monitoring to check whether the data is moving correctly. This will help keep the system more organized and reliable.
+To reduce this risk, I would define clear responsibilities for each system. The operational database would handle transactions, the warehouse would handle reporting, the vector database would handle semantic search, and the time-series database would handle ICU telemetry. I would also use monitored ETL and streaming pipelines, strong data quality checks, and consistent metadata rules. This would help control the complexity while still keeping the advantages of a multi-system design.
